@@ -102,17 +102,17 @@ def start_decompile(input_class_name=None):
         classes.setdefault(class_name, []).append(procedure)
         total_count += 1
 
-    print 'total count :', total_count
+    print('total count :', total_count)
 
     current_count = 0
     for class_name in classes:
-        print '\n***** %s *****'%(class_name)
+        print('\n***** %s *****'%(class_name))
         codes = get_file_header(class_name)
         procedures = classes[class_name]
         for procedure in procedures:
             current_count += 1
             percent = (float(current_count) / total_count) * 100
-            print '%05.2f%%  |  %s'%(percent, procedure.label_name)
+            print('%05.2f%%  |  %s'%(percent, procedure.label_name))
             pseudo_code = procedure.decompile()
             if not pseudo_code:
                 continue
@@ -130,11 +130,11 @@ def start_decompile(input_class_name=None):
         gc.collect()
 
     os.system('open "%s"'%(path))
-    print 'Done!'
+    print('Done!')
 
 
 document = Document.getCurrentDocument()
-segment = document.getSegmentByName('__TEXT')
+segment = document.getSegmentByName('__KS_TEXT')
 if not segment:
     segment = document.getSegmentsList()[0]
 
@@ -152,11 +152,10 @@ elif button_index == 1:
     message = 'Please input the class name:'
     input_class_name = document.ask(message)
     if input_class_name is None:
-        print 'Cancel decompile!'
+        print('Cancel decompile!')
     elif input_class_name == '':
-        print 'Class name can not be empty!'
+        print('Class name can not be empty!')
     else:
         start_decompile(input_class_name)
 elif button_index == 2:
-    print 'Cancel decompile!'
-
+    print('Cancel decompile!')
