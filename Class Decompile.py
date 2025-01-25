@@ -123,7 +123,7 @@ def start_decompile(input_class_name=None):
         codes += get_file_footer()
 
         file_path = get_file_path(class_name)
-        with open(file_path, 'w') as file:
+        with open(file_path, 'w', encoding='utf-8') as file:
             file.write(codes)
 
         del codes
